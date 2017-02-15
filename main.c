@@ -1,9 +1,10 @@
 #include <stdio.h>
 
+float function calc(float result, int days);
 
 int main() 
 {
-    int f = 0, days = 0;
+    unsigned int f = 0, days = 0;
     float money = 0;
     
     printf("Сумма вклада(т.р.):\n");
@@ -17,12 +18,32 @@ int main()
         return 1;
     }
     
+    calc(money, days);
     
-
     return 0;
 }
 
-float function() {
-
+float function calc(float result, int days) {
+    float one, two, thr;
+    
+    if(days > 0 && days < 30) {
+        result = result * 0.9;
+        return result;
+    }
+    if(money < 100) {
+        one = 1.02;
+        two = 1.06;
+        thr = 1.12;
+    } else if(money > 100) {
+        one = 1.03;
+        two = 1.08;
+        thr = 1.15;
+    } else return 0;
+    
+    if(days > 30 && days <= 120) {
+        result = result * one;
+    } else if(days) {
+        result = result * two;
+    }
     return result;
 }
