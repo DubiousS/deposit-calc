@@ -13,13 +13,14 @@ int main()
         return 1;
     }
     printf("Срок вклада(д.):\n");
-    if(scanf("%d", &days) != 1 || days > 365) {
+    if(scanf("%d", &days) != 1 || days >= 365) {
         printf("Срок вклада введён некорректно.\n");
         return 1;
     }
     
-    calc(money, days);
-    
+    if(money = calc(money, days)) {
+        printf("Вы получите %d т.р.\n", money);
+    }
     return 0;
 }
 
@@ -42,8 +43,10 @@ float function calc(float result, int days) {
     
     if(days > 30 && days <= 120) {
         result = result * one;
-    } else if(days) {
+    } else if(days > 120 && days <= 240) {
         result = result * two;
-    }
+    } else if(days > 240 && days <= 365) {
+        result = result * thr;
+    } else return 0;
     return result;
 }
