@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "main.h"
 
 float calc(float result, int days) {
     float one, two, thr;
