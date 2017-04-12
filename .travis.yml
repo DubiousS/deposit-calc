@@ -1,7 +1,7 @@
 language: c
 
 install:
-    -make
+    - make
 
 script: 
     - bin/deposit-calc-test
