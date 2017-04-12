@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <ctest.h>
+#include "../thirdparty/ctest.h"
 #include "main.h"
 
 int main() 
