@@ -9,7 +9,7 @@ CC := gcc
 CFLAGS := -Wall -Werror -c
 
  
-all: $(SOURCE) $(TARGET) clean
+all: $(SOURCE) $(TARGET)
 
 $(TARGET): $(SOURCE:.c=.o)
 	$(CC) $(SOURCE_O:.c=.o) -o $@
@@ -19,5 +19,5 @@ $(TARGET): $(SOURCE:.c=.o)
 
 .PHONY: all clean
 clean:
-	rm -f build/*.o
-	rm -f /*
+	rm -f *.o
+	rm -f bin/*
