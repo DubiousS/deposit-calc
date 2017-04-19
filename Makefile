@@ -12,7 +12,7 @@ EXE_TEST := bin/deposit-calc-test
 LFLAGS := -I thirdparty -I src -c
 
  
-all: $(SOURCE) $(TARGET) $(EXE_TEST) 
+all: $(SOURCE) $(TARGET) $(EXE_TEST)
 
 $(TARGET): $(SOURCE:.c=.o)
 	$(CC) $(SOURCE_O:.c=.o) -o $@
