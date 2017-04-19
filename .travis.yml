@@ -5,3 +5,9 @@ install:
 
 script: 
   - bin/deposit-calc-test
+    
+after_success:
+  - make clean
+    
+after_failure:
+  - make clean
