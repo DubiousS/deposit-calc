@@ -7,6 +7,7 @@ int main()
     unsigned int days = 0;
     float money = 0;
     
+    
     printf("Сумма вклада(т.р.):\n");
     if(scanf("%f", &money) != 1 || money < 10) {
         printf("Сумма вклада введена некорректно.\n");
