@@ -3,39 +3,38 @@ FOLDER_TWO := build/src/
 FOLDER_TEST := build/test/
 SRC := main.c function.c 
 SRCH :=  main.h 
-SOURCE := $(addprefix $(FOLDER), $(SRC) $(SRCH))
-SOURCE_O := $(addprefix $(FOLDER_TWO), $(SRC))
 TARGET := bin/calc
 CC := gcc
-CFLAGS := -Wall -Werror -c
+CFLAGS :=  -Wall -Werror -c
 EXE_TEST := bin/deposit-calc-test
 LFLAGS := -I thirdparty -I src -c
 
  
-all: $(SOURCE) $(EXE_TEST) $(TARGET)
+all: $(EXE_TEST) $(TARGET)
 
-$(TARGET): $(SOURCE:.c=.o)
-	$(CC) $(SOURCE_O:.c=.o) -o $@
+$(TARGET): build/src/main.o build/src/function.o
+	$(CC) build/src/main.o build/src/function.o -o $@
 
-$(addprefix $(FOLDER_TWO), main.o): src/main.c src/function.h
+build/src/main.o: src/main.c src/main.h
 		$(CC) $(CFLAGS) src/main.c -o $@   
 
-$(addprefix $(FOLDER_TWO), function.o): src/function.c 
+build/src/function.o: src/function.c 
 		$(CC) $(CFLAGS) src/function.c -o $@ 
 
-$(EXE_TEST): $(addprefix $(FOLDER_TEST), function_test.o validation_test.o main.o) build/src/function.o
-		$(CC) $(addprefix $(FOLDER_TEST), function_test.o validation_test.o main.o) build/src/function.o -o $@
+$(EXE_TEST): build/test/function_test.o build/test/validation_test.o build/test/main.o build/src/function.o
+		$(CC) build/test/function_test.o build/test/validation_test.o build/test/main.o build/src/function.o -o $@
 
-$(addprefix $(FOLDER_TEST), function_test.o): test/function_test.c       
+build/test/function_test.o: test/function_test.c       
 		$(CC) $(LFLAGS) test/function_test.c -o $@   
 
-$(addprefix $(FOLDER_TEST), validation_test.o): test/validation_test.c   
+build/test/validation_test.o: test/validation_test.c   
 		$(CC) $(LFLAGS) test/validation_test.c -o $@
 
-$(addprefix $(FOLDER_TEST), main.o): test/main.c 
+build/test/main.o: test/main.c 
 		$(CC) -I thirdparty -c test/main.c -o $@
 
 .PHONY: all clean
 clean:
-	rm -f *.o
+	rm -f build/src/*.o
+	rm -f build/test/*.o
 	rm -f bin/*
